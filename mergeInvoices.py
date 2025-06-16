@@ -19,9 +19,9 @@ def PDFmerge(pdfs, output):
 
 print("Starting script...")
 
-mypath = "/Invoices"
-DOpath = "/DOs"
-POpath = "/POs"
+mypath = "Invoices"
+DOpath = "DOs"
+POpath = "POs"
 onlyfiles = [f for f in listdir(mypath) if isfile(join(mypath, f))]
 
 for filename in onlyfiles:
@@ -62,13 +62,12 @@ for filename in onlyfiles:
         POfilepath = POpath + '/PO ' + PO_no + '.pdf'
 
         pdfs = [mypath + '/' + filename, DOpath + '/DO '+DO_no+'.pdf', POfilepath] #pdf files to merge
-        output = mypath + '/' + company_name + ' Inv ' + invoice_number + ' DO ' + DO_no + ' PO' + PO_no + '.pdf' #output pdf file
+        output = company_name + ' Inv ' + invoice_number + ' DO ' + DO_no + ' PO' + PO_no + '.pdf' #output pdf file
     else:
         pdfs = [mypath + '/' + filename, DOpath + '/DO '+DO_no+'.pdf'] #pdf files to merge
-        output = mypath + '/' + company_name + ' Inv ' + invoice_number + ' DO ' + DO_no + '.pdf' #output pdf file
+        output = company_name + ' Inv ' + invoice_number + ' DO ' + DO_no + '.pdf' #output pdf file
 
     PDFmerge(pdfs=pdfs, output=output) #calling pdf merge function
-    os.remove(mypath + '/' + filename) #deletes the original invoice file
 
     print("Saved " + output)
 print("Finished merging invoices with DOs and POs (if any).")
