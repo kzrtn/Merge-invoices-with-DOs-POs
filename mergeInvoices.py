@@ -39,16 +39,16 @@ for filename in onlyfiles:
     invoice_number = extracted_string[start:end].strip().replace("/","-")
 
     # finds company name
-    start = extracted_string.find("Invoice Date: ")+25
+    start = extracted_string.find("Bill to: ")+9
 
     # this is to find the end of the string (it's a line break)
     line_breaks = [i for i, char in enumerate(extracted_string) if char == '\n']
-    if len(line_breaks) >= 7:
-        end = line_breaks[6]
+    if len(line_breaks) >= 16:
+        end = line_breaks[15]
     else:
-        print("There aren't seven line breaks. Error.")
+        print("There aren't 15 line breaks. Error.")
 
-    company_name = extracted_string[start:end]
+    company_name = extracted_string[start:end].strip()
 
     #if Pte Ltd is in the name, remove it
     if "Pte Ltd" in company_name:
